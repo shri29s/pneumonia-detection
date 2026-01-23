@@ -1,0 +1,6 @@
+numpy
+tensorflow
+matplotlib
+ipykernel
+opencv-python
+pandas
