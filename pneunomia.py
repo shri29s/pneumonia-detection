@@ -35,6 +35,9 @@ class PneumoniaModel:
 
         grads = tape.gradient(loss, conv_outputs)
 
+        if grads is None:
+            return float(predictions[0][0]), None
+
         conv_outputs = conv_outputs[0]
         grads = grads[0]
 
