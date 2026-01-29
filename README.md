@@ -81,16 +81,11 @@ Initially, most layers of the pretrained DenseNet are frozen to preserve generic
 - **Loss function**: Binary Cross-Entropy, suitable for binary classification.
 - **Optimizer**: Adam optimizer with a low learning rate during fine-tuning to prevent catastrophic forgetting.
 
-### 5.3 Evaluation Metrics
+### 5.3 Evaluation Strategy
 
-The model is evaluated using:
+Model evaluation is performed on a held-out **test set** using standard classification metrics, with a strong emphasis on **recall for the pneumonia class**, as missing positive cases (false negatives) is critical in medical diagnosis.
 
-- Accuracy
-- Precision
-- Recall
-- F1-score
-
-Special emphasis is placed on **recall for the pneumonia class**, as missing positive cases (false negatives) is critical in medical diagnosis.
+Detailed quantitative results and their clinical interpretation are presented in **Section 6: Model Evaluation Metrics**.
 
 ---
 
