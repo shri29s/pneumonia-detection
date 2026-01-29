@@ -81,28 +81,57 @@ Initially, most layers of the pretrained DenseNet are frozen to preserve generic
 - **Loss function**: Binary Cross-Entropy, suitable for binary classification.
 - **Optimizer**: Adam optimizer with a low learning rate during fine-tuning to prevent catastrophic forgetting.
 
-### 5.3 Evaluation Metrics
+### 5.3 Evaluation Strategy
 
-The model is evaluated using:
+Model evaluation is performed on a held-out **test set** using standard classification metrics, with a strong emphasis on **recall for the pneumonia class**, as missing positive cases (false negatives) is critical in medical diagnosis.
 
-- Accuracy
-- Precision
-- Recall
-- F1-score
-
-Special emphasis is placed on **recall for the pneumonia class**, as missing positive cases (false negatives) is critical in medical diagnosis.
+Detailed quantitative results and their clinical interpretation are presented in **Section 6: Model Evaluation Metrics**.
 
 ---
 
-## 6. Model Performance
+## 6. Model Evaluation Metrics
 
-The trained model achieves strong performance on the test set, with:
+The performance of the pneumonia detection model is evaluated on a held-out **test set** using standard classification metrics. These metrics provide insight into both overall performance and class-specific behavior, which is especially important in medical applications.
 
-- High overall accuracy.
-- High recall for pneumonia cases, indicating effective detection of infected patients.
-- Balanced precision and recall, showing stable learning without strong class bias.
+### 6.1 Classification Report
 
-These results demonstrate that the model is suitable for pneumonia screening tasks.
+```
+              precision   recall   f1-score   support
+
+NORMAL (0)       0.87      0.88      0.88       234
+PNEUMONIA (1)    0.93      0.92      0.93       390
+
+accuracy                            0.91       624
+macro avg       0.90      0.90      0.90       624
+weighted avg    0.91      0.91      0.91       624
+```
+
+### 6.2 Metric Interpretation
+
+* **Accuracy (91%)**
+  Indicates strong overall classification performance on unseen chest X-ray images.
+
+* **Recall for Pneumonia (92%)**
+  The model correctly identifies **92% of pneumonia cases**, which is critical in medical screening scenarios where false negatives can have severe consequences.
+
+* **Precision for Pneumonia (93%)**
+  High precision suggests that most pneumonia predictions made by the model are correct, minimizing unnecessary alarms.
+
+* **F1-Score (93% for Pneumonia)**
+  Demonstrates a strong balance between precision and recall, indicating stable and reliable learning.
+
+* **Macro vs Weighted Average**
+  The close values between macro and weighted averages suggest that the model performs consistently across classes despite moderate class imbalance.
+
+### 6.3 Clinical Relevance
+
+From a clinical screening perspective:
+
+* The **high recall for pneumonia** makes the model suitable for **early detection and triage support**.
+* The balanced precision reduces the burden of false positives on clinicians.
+* The model is best positioned as a **decision-support or screening tool**, rather than a standalone diagnostic system.
+
+> *Threshold selection and recall-oriented optimization were prioritized due to the high clinical cost of missed pneumonia cases.*
 
 ---
 
