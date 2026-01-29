@@ -96,12 +96,12 @@ The performance of the pneumonia detection model is evaluated on a held-out **te
 ### 6.1 Classification Report
 
 ```
-precision    recall  f1-score   support
+              precision   recall   f1-score   support
 
 NORMAL (0)       0.87      0.88      0.88       234
 PNEUMONIA (1)    0.93      0.92      0.93       390
 
-accuracy                           0.91       624
+accuracy                            0.91       624
 macro avg       0.90      0.90      0.90       624
 weighted avg    0.91      0.91      0.91       624
 ```
